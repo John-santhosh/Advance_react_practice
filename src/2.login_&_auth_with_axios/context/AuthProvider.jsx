@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import axios from "../../api/axios";
 
 const AuthContext = createContext();
 
@@ -10,3 +11,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+//custom hook
+// export const useAuthContext = () => useContext(AuthContext);
