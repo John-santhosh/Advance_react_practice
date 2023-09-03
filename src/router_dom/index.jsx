@@ -1,29 +1,29 @@
 /* eslint-disable no-unused-vars */
 import { styled } from "styled-components";
-// import App from "./App";
-import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Route,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+//
+import RootLayout from "./layouts/RootLayout";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      {/* we can use index prob to indicate the path to "/" */}
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+    </Route>
+  )
+);
 const index = () => {
   return (
     <Wrapper>
-      <BrowserRouter>
-        <header>
-          <nav>
-            <h1>Router Demo</h1>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
-          </nav>
-        </header>
-        <main>
-          <Routes>
-            {/* we can use index prob to indicate the path to "/" */}
-            <Route index element={<Home />}></Route>
-            <Route path="about" element={<About />}></Route>
-          </Routes>
-        </main>
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </Wrapper>
   );
 };
